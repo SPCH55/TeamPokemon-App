@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/team_controller.dart';
 import 'team_page.dart';
+import 'about_page.dart'; // <- สร้างหน้าเกี่ยวกับใหม่
 
 class TeamsPage extends StatelessWidget {
   const TeamsPage({super.key});
@@ -13,6 +14,15 @@ class TeamsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Teams'),
+        actions: [
+          IconButton(
+            tooltip: 'เกี่ยวกับ',
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              Get.to(() => const AboutPage());
+            },
+          ),
+        ],
       ),
       body: Obx(() {
         final list = ctrl.teams;
@@ -67,7 +77,7 @@ class TeamsPage extends StatelessWidget {
               ),
               onTap: () {
                 ctrl.selectTeam(t.id);
-                Get.to(() => TeamPage()); // << ไม่มี const
+                Get.to(() => const TeamPage());
               },
             );
           },
